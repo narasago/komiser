@@ -28,14 +28,14 @@ export class AzureDashboardComponent
   public loadingUsedRegions: boolean = true;
 
   private regions: Map<string, any> = new Map<string, any>([
-    ["nyc", { latitude: "40.712776", longitude: "-74.005974" }],
-    ["ams", { latitude: "52.370216", longitude: "4.895168" }],
+    ["eastus", { latitude: "37.3719", longitude: "-74.005974" }],
+   /* ["ams", { latitude: "52.370216", longitude: "4.895168" }],
     ["sfo", { latitude: "37.774929", longitude: "-122.419418" }],
     ["sgp", { latitude: "1.352083", longitude: "103.819839" }],
     ["lon", { latitude: "51.507351", longitude: "-0.127758" }],
     ["fra", { latitude: "50.110924", longitude: "8.682127" }],
     ["tor", { latitude: "43.653225", longitude: "-79.383186" }],
-    ["blr", { latitude: "12.971599", longitude: "77.594566" }],
+    ["blr", { latitude: "12.971599", longitude: "77.594566" }],*/
   ]);
 
   private _subscription: Subscription;
@@ -84,7 +84,8 @@ export class AzureDashboardComponent
         let scope = this;
 
         data.forEach((droplet) => {
-          let region = droplet.region.substring(0, droplet.region.length - 1);
+         // let region = droplet.region.substring(0, droplet.region.length - 1);
+	 let region = droplet.region;
           _usedRegions[region] =
             (_usedRegions[region] ? _usedRegions[region] : 0) + 1;
         });
@@ -96,7 +97,7 @@ export class AzureDashboardComponent
             longitude: scope.regions.get(region).longitude,
             value: [_usedRegions[region], 1],
             tooltip: {
-              content: `${region}<br />Droplets: ${_usedRegions[region]}`,
+              content: `${region}<br />VMs: ${_usedRegions[region]}`,
             },
           };
         }
@@ -113,7 +114,7 @@ export class AzureDashboardComponent
               latitude: this.regions.get(region).latitude,
               longitude: this.regions.get(region).longitude,
               value: [_usedRegions[region], 0],
-              tooltip: { content: `${region}<br />Droplets: 0` },
+              tooltip: { content: `${region}<br />VMs: 0` },
             };
           }
         });

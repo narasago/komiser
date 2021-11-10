@@ -11,7 +11,8 @@ require (
 	github.com/Azure/go-autorest/autorest/validation v0.3.1 // indirect
 	github.com/aws/aws-sdk-go-v2 v0.7.1-0.20190410190156-80eda21e3854
 	github.com/digitalocean/godo v1.19.1-0.20190722163849-4677563d2a4e
-	github.com/elazarl/go-bindata-assetfs v1.0.1-0.20180223160309-38087fe4dafb
+	github.com/elazarl/go-bindata-assetfs v1.0.1
+	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
 	github.com/go-redis/redis v6.15.3-0.20190419151012-721116ac0e91+incompatible
 	github.com/gofrs/uuid v4.1.0+incompatible // indirect
 	github.com/golang/protobuf v1.3.2-0.20190409050943-e91709a02e0e

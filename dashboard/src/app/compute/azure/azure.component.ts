@@ -74,8 +74,8 @@ export class AzureComputeComponent implements OnInit, OnDestroy, AfterViewInit {
       bsd: 0,
       debian: 0,
       fedora: 0,
-      centos: 0,
-    };
+      centos: 0
+    }
     this.kubernetesClusters = 0;
     this.kubernetesNodes = 0;
     this.activeDroplets = 0;
@@ -100,7 +100,7 @@ export class AzureComputeComponent implements OnInit, OnDestroy, AfterViewInit {
           }
 
           switch (droplet.image) {
-            case "Ubuntu":
+            case "UbuntuServer":
               this.images.ubuntu++;
               break;
             case "CentOS":
@@ -134,7 +134,7 @@ export class AzureComputeComponent implements OnInit, OnDestroy, AfterViewInit {
           bsd: 0,
           debian: 0,
           fedora: 0,
-          centos: 0,
+          centos: 0
         };
         this.loadingImages = false;
       }
