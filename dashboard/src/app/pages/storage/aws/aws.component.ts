@@ -27,6 +27,7 @@ export class AwsStorageComponent implements OnInit, OnDestroy {
   public ebsTotal: number;
   public ebsTotalSize: string;
   public ebsUsed: number;
+  public unencryptedEBS: number;
   public dynamodbTables: number;
   public rdsInstances: number;
   public docdbInstances: number;
@@ -42,6 +43,7 @@ export class AwsStorageComponent implements OnInit, OnDestroy {
   public loadingEbsTotal: boolean = true;
   public loadingEbsTotalSize: boolean = true;
   public loadingEbsUsed: boolean = true;
+  public loadingUnencryptedEBS: boolean = true;
   public loadingLogsRetentionPeriod: boolean = true;
   public loadingDynamoTables: boolean = true;
   public loadingRdsInstances: boolean = true;
@@ -84,6 +86,7 @@ export class AwsStorageComponent implements OnInit, OnDestroy {
       this.ebsTotal = 0;
       this.ebsTotalSize = '0 KB';
       this.ebsUsed = 0;
+      this.unencryptedEBS = 0;
       this.dynamodbTables = 0;
       this.rdsInstances = 0;
       this.docdbInstances = 0;
@@ -99,6 +102,7 @@ export class AwsStorageComponent implements OnInit, OnDestroy {
       this.loadingEbsTotal = true;
       this.loadingEbsTotalSize = true;
       this.loadingEbsUsed = true;
+      this.loadingUnencryptedEBS = true;
       this.loadingLogsRetentionPeriod = true;
       this.loadingDynamoTables = true;
       this.loadingRdsInstances = true;
@@ -143,6 +147,13 @@ export class AwsStorageComponent implements OnInit, OnDestroy {
       this.loadingEbsTotalSize = false;
       this.ebsUsed = data.state['in-use'];
       this.loadingEbsUsed = false;
+      if (this.ebsTotal == 0) {
+        this.unencryptedEBS = 0;
+      }
+      else {
+        this.unencryptedEBS = this.ebsTotal - data.encrypted;
+      }
+      this.loadingUnencryptedEBS = false;
       this.loadingEbsFamilyChart = false;
       this.showEBSFamily(labels, series);
     }, err => {
